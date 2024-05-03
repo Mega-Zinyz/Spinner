@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private Spinner _spinner1,_spinner2,_spinner3,_spinner4;
+    private Spinner _spinner1,_spinner2,_spinner3,_spinner4,_spinnerprime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,11 +30,14 @@ public class MainActivity extends AppCompatActivity {
         _spinner2 = (Spinner)findViewById(R.id.spinner2);
         _spinner3 = (Spinner)findViewById(R.id.spinner3);
         _spinner4 = (Spinner)findViewById(R.id.spinner4);
+        _spinnerprime = (Spinner)findViewById(R.id.spinnerprima);
 
         initSpinner1();
         initSpinner2();
         initSpinner3();
         initSpinner4();
+        initSpinnerPrima();
+
     }
 
     private void initSpinner1() {
@@ -80,5 +83,25 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayAdapter<String> arrayAdapter4 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, genapList);
         _spinner4.setAdapter(arrayAdapter4);
+    }
+
+    private void initSpinnerPrima(){
+        List<String> primaList = new ArrayList<>();
+
+        for (int i = 1, num = 0; i <= 1000; i++) {
+            int counter = 0;
+            for (num = i; num >= 1; num--) {
+                if (i % num == 0) {
+                    counter = counter + 1;
+                }
+            }
+            if (counter == 2) {
+
+                primaList.add("Bilanggan Ke-"+ i);
+            }
+        }
+        ArrayAdapter<String> arrayAdapterprima = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, primaList);
+        _spinnerprime.setAdapter(arrayAdapterprima);
+
     }
 }
